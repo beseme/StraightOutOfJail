@@ -8,11 +8,14 @@ public class Move : MonoBehaviour
     private Sprite[] _sprite = new Sprite[2];
     private int _spriteIndex = 0;
     private bool _flipped;
+    private float _stamina;
+    public UIBar _bar;
 
     // Start is called before the first frame update
     void Start()
     {
         _flipped = false;
+        _stamina = 100;
     }
 
     // Update is called once per frame
@@ -32,7 +35,9 @@ public class Move : MonoBehaviour
                 gameObject.transform.position += new Vector3(-2, 0, 0);
             else
                 gameObject.transform.position += new Vector3(2, 0, 0);
+            _stamina -= 5;
         }
 
+        _bar.GetComponent<UIBar>().Bar(_stamina, 1, 100, 0, 1);
     }
 }
