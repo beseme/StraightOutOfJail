@@ -39,5 +39,8 @@ public class Move : MonoBehaviour
         }
 
         _bar.GetComponent<UIBar>().Bar(_stamina, 1, 100, 0, 1);
+
+        if (_stamina <= 100)
+            _stamina += Time.deltaTime * 3;
     }
 }
