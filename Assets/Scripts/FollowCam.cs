@@ -15,6 +15,7 @@ public class FollowCam : MonoBehaviour
     {
         transform.position = _player.transform.position;
         _smoothen = .03f;
+        gameObject.transform.position = new Vector3(0, 0, -200);
     }
 
     // Update is called once per frame

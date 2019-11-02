@@ -25,9 +25,16 @@ public class SleepyGuard : MonoBehaviour
     void Start()
     {
         if (gameObject.transform.localScale == new Vector3(-1, 1, 1))
+        {
             _rayDir = gameObject.transform.right;
+            _lineOrigin = new Vector3(1, 0, 0);
+
+        }
         else
+        {
             _rayDir = -gameObject.transform.right;
+            _lineOrigin = new Vector3(-1, 0, 0);
+        }
         _view = GetComponent<LineRenderer>();
         _points = new Vector3[2];
         _lineDirection = new Vector3(-LineLength, 0, 0);
@@ -55,9 +62,8 @@ public class SleepyGuard : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = _sprites[_spriteIndex % 2];
         }
 
-        _lineOrigin = gameObject.transform.position;
-        _points[0] = _lineOrigin;
-        _points[1] = _lineOrigin + _lineDirection;
+        _points[0] = gameObject.transform.position + _lineOrigin;
+        _points[1] = gameObject.transform.position + _lineDirection;
         _view.SetPositions(_points);
     }
 }

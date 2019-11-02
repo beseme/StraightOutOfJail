@@ -32,6 +32,7 @@ public class Guard : MonoBehaviour
         _view = GetComponent<LineRenderer>();
         _points = new Vector3[2];
         _lineDirection = new Vector3(-LineLength, 0, 0);
+        _lineOrigin = new Vector3(-1, 0, 0);
         _fail.gameObject.SetActive(false);
     }
 
@@ -39,6 +40,7 @@ public class Guard : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector3(-gameObject.transform.localScale.x, 1,1);
         _lineDirection = -_lineDirection;
+        _lineOrigin = -_lineOrigin;
         _rayDirection = -_rayDirection;
         _speed *= -1f;
     }
@@ -48,10 +50,8 @@ public class Guard : MonoBehaviour
     {
         gameObject.transform.position += _move * _speed;
 
-        _lineOrigin = gameObject.transform.position;
-
-        _points[0] = _lineOrigin;
-        _points[1] = _lineOrigin + _lineDirection;
+        _points[0] = gameObject.transform.position +_lineOrigin;
+        _points[1] = gameObject.transform.position + _lineDirection;
 
         _view.SetPositions(_points);
 
@@ -66,6 +66,10 @@ public class Guard : MonoBehaviour
 
         if (_wallHit)
             Flip();
+
+        var line = gameObject.GetComponent<LineRenderer>();
+        var distance = Vector3.Distance(_points[0], _points[1]);
+        line.materials[0].mainTextureScale = new Vector3(distance, 1, 1);
 
     }
 }
