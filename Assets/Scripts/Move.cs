@@ -85,7 +85,7 @@ public class Move : MonoBehaviour
         }
 
         // stamina
-        /*
+        
         if (_stamina < 0)
             _jumpPossible = false;
         if (_stamina > 25)
@@ -100,7 +100,7 @@ public class Move : MonoBehaviour
             _exhaustCloud.Play();
         else
             _exhaustCloud.Stop();
-*/
+
         //hiding
         _rayBlack = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("Black"));
         _rayWhite = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("White"));
@@ -118,7 +118,7 @@ public class Move : MonoBehaviour
             Vignette.enabled = false;
 
         //raycast wall
-        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 4, LayerMask.GetMask("Wall"));
+        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 2, LayerMask.GetMask("Wall"));
 
             Debug.DrawRay(gameObject.transform.position, _rayDir, Color.green);
     }
