@@ -16,6 +16,7 @@ public class Move : MonoBehaviour
     private RaycastHit2D _rayBlack;
     private RaycastHit2D _rayWhite;
     public PostProcessVolume Vignette;
+    private ParticleSystem _exhaustCloud;
     
 
 
@@ -25,6 +26,8 @@ public class Move : MonoBehaviour
         _flipped = false;
         _stamina = 100;
         _jumpPossible = true;
+        _exhaustCloud = GetComponent<ParticleSystem>();
+        _exhaustCloud.Stop();
     }
 
     // Update is called once per frame
@@ -50,9 +53,9 @@ public class Move : MonoBehaviour
                 _stamina -= 10;
             }
 
-            /*
-             Joystick Action?! 
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+
+             //Joystick Action?! 
+            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 _flipped = !_flipped;
                 if (_flipped)
@@ -61,7 +64,7 @@ public class Move : MonoBehaviour
                     GetComponent<SpriteRenderer>().sprite = _sprite[0];
             }
 
-            if (Input.GetKey(KeyCode.Joystick1Button1))
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 if (_flipped)
                     gameObject.transform.position += new Vector3(-2, 0, 0);
@@ -70,7 +73,7 @@ public class Move : MonoBehaviour
                 _stamina -= 10;
             }
 
-            */
+            
         }
 
         // stamina
@@ -84,6 +87,10 @@ public class Move : MonoBehaviour
         if (_stamina <= 100)
             _stamina += Time.deltaTime * 10;
 
+        if (!_jumpPossible)
+            _exhaustCloud.Play();
+        else
+            _exhaustCloud.Stop();
 
         //hiding
         _rayBlack = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("Black"));
