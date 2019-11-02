@@ -37,13 +37,10 @@ public class Guard : MonoBehaviour
 
     void Flip()
     {
+        gameObject.transform.localScale = new Vector3(-gameObject.transform.localScale.x, 1,1);
         _lineDirection = -_lineDirection;
         _rayDirection = -_rayDirection;
         _speed *= -1f;
-        _spriteIndex += 1;
-        if (_spriteIndex > 1)
-            _spriteIndex = 0;
-        GetComponent<SpriteRenderer>().sprite = _spriteFlip[_spriteIndex];
     }
 
     // Update is called once per frame
@@ -64,7 +61,7 @@ public class Guard : MonoBehaviour
         if (_hit && Player._hidden == false)
         {
             _fail.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
         if (_wallHit)

@@ -15,6 +15,8 @@ public class Move : MonoBehaviour
     public UIBar _bar;
     private RaycastHit2D _rayBlack;
     private RaycastHit2D _rayWhite;
+    private RaycastHit2D _wallHit;
+    private Vector2 _rayDir;
     public PostProcessVolume Vignette;
     private ParticleSystem _exhaustCloud;
     
@@ -28,6 +30,7 @@ public class Move : MonoBehaviour
         _jumpPossible = true;
         _exhaustCloud = GetComponent<ParticleSystem>();
         _exhaustCloud.Stop();
+        _rayDir = gameObject.transform.right;
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class Move : MonoBehaviour
                 if (!_flipped)
                     GetComponent<SpriteRenderer>().sprite = _sprite[0];
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !_wallHit)
             {
                 if (_flipped)
                     gameObject.transform.position += new Vector3(-2, 0, 0);
@@ -62,9 +65,10 @@ public class Move : MonoBehaviour
                     GetComponent<SpriteRenderer>().sprite = _sprite[1];
                 if (!_flipped)
                     GetComponent<SpriteRenderer>().sprite = _sprite[0];
+                _rayDir = -_rayDir;
             }
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1) && !_wallHit)
             {
                 if (_flipped)
                     gameObject.transform.position += new Vector3(-2, 0, 0);
@@ -107,6 +111,9 @@ public class Move : MonoBehaviour
             Vignette.enabled = true;
         else
             Vignette.enabled = false;
+
+        //raycast wall
+        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 2, LayerMask.GetMask("Wall"));
 
     }
 }
