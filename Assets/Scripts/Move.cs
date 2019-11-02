@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Move : MonoBehaviour
 {
@@ -9,8 +10,14 @@ public class Move : MonoBehaviour
     private int _spriteIndex = 0;
     private bool _flipped;
     private bool _jumpPossible;
+    public bool _hidden;
     private float _stamina;
     public UIBar _bar;
+    private RaycastHit2D _rayBlack;
+    private RaycastHit2D _rayWhite;
+    public PostProcessVolume Vignette;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,5 +59,21 @@ public class Move : MonoBehaviour
 
         if (_stamina <= 100)
             _stamina += Time.deltaTime * 10;
+
+        _rayBlack = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("Black"));
+        _rayWhite = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("White"));
+
+        if (_rayBlack && _flipped)
+            _hidden = true;
+        else if (_rayWhite && !_flipped)
+            _hidden = true;
+        else
+            _hidden = false;
+
+        if (_hidden)
+            Vignette.enabled = true;
+        else
+            Vignette.enabled = false;
+
     }
 }
