@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1713165828074647504}
   - component: {fileID: 1713165828074647507}
   m_Layer: 0
-  m_Name: TeleporterA
+  m_Name: TeleporterR
   m_TagString: Elevator
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713165828074647506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 1, z: 0}
+  m_LocalPosition: {x: 16, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc2d79aa9718b942999cdbea4118ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clip: {fileID: 0}
 --- !u!61 &1713165828074647507
 BoxCollider2D:
   m_ObjectHideFlags: 0
