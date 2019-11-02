@@ -5,14 +5,14 @@ using UnityEngine;
 public class FollowCam : MonoBehaviour
 {
     public Transform _player;
-    //private Transform _follow;
-
     private float _smoothen;
     private Vector3 _offset;
+    public bool Active;
 
     // Start is called before the first frame update
     void Start()
     {
+        Active = true;
         transform.position = _player.transform.position;
         _smoothen = .03f;
         gameObject.transform.position = new Vector3(0, 0, -200);

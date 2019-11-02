@@ -21,6 +21,8 @@ public class SleepyGuard : MonoBehaviour
     public float LineLength;
     private Vector3[] _points;
 
+    public FollowCam Active;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,20 +48,28 @@ public class SleepyGuard : MonoBehaviour
     void Update()
     {
         _ray = Physics2D.Raycast(gameObject.transform.position, _rayDir, 10, LayerMask.GetMask("Player"));
-        if(_ray && _awake && !Player._hidden)
+        if(_ray && _awake && !Player._hidden && Active.Active)
         {
             Fail.gameObject.SetActive(true);
+            Active.Active = false;
         }
 
-        _sleepTimer -= Time.deltaTime;
-        if(_sleepTimer <= 0)
+        if (Active.Active)
         {
-            _sleepTimer = 1;
-            _awake = !_awake;
-            _view.enabled = !_view.enabled;
-            _spriteIndex += 1;
+            _sleepTimer -= Time.deltaTime;
+            if (_sleepTimer <= 0)
+            {
+                _sleepTimer = 1;
+                _awake = !_awake;
+                _view.enabled = !_view.enabled;
+                _spriteIndex += 1;
 
-            GetComponent<SpriteRenderer>().sprite = _sprites[_spriteIndex % 2];
+                GetComponent<SpriteRenderer>().sprite = _sprites[_spriteIndex % 2];
+            }
+        }
+        else
+        {
+            _view.enabled = false;
         }
 
         _points[0] = gameObject.transform.position + _lineOrigin;

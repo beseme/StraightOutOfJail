@@ -19,6 +19,7 @@ public class Move : MonoBehaviour
     private Vector2 _rayDir;
     public PostProcessVolume Vignette;
     private ParticleSystem _exhaustCloud;
+    public FollowCam Active;
     
 
 
@@ -36,45 +37,47 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // movement
-        if (_jumpPossible)
-        {
-            if (Input.GetKeyDown(KeyCode.W))
+        if (Active.Active) {
+            // movement
+            if (_jumpPossible)
             {
-                _flipped = !_flipped;
-                if (_flipped)
-                    GetComponent<SpriteRenderer>().sprite = _sprite[1];
-                if (!_flipped)
-                    GetComponent<SpriteRenderer>().sprite = _sprite[0];
-            }
-            if (Input.GetKeyDown(KeyCode.Space) && !_wallHit)
-            {
-                if (_flipped)
-                    gameObject.transform.position += new Vector3(-2, 0, 0);
-                else
-                    gameObject.transform.position += new Vector3(2, 0, 0);
-                _stamina -= 10;
-            }
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    _flipped = !_flipped;
+                    if (_flipped)
+                        GetComponent<SpriteRenderer>().sprite = _sprite[1];
+                    if (!_flipped)
+                        GetComponent<SpriteRenderer>().sprite = _sprite[0];
+                }
+                if (Input.GetKeyDown(KeyCode.Space) && !_wallHit)
+                {
+                    if (_flipped)
+                        gameObject.transform.position += new Vector3(-2, 0, 0);
+                    else
+                        gameObject.transform.position += new Vector3(2, 0, 0);
+                    _stamina -= 10;
+                }
 
 
-             //Joystick Action?! 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
-            {
-                _flipped = !_flipped;
-                if (_flipped)
-                    GetComponent<SpriteRenderer>().sprite = _sprite[1];
-                if (!_flipped)
-                    GetComponent<SpriteRenderer>().sprite = _sprite[0];
-                _rayDir = -_rayDir;
-            }
+                //Joystick Action?! 
+                if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+                {
+                    _flipped = !_flipped;
+                    if (_flipped)
+                        GetComponent<SpriteRenderer>().sprite = _sprite[1];
+                    if (!_flipped)
+                        GetComponent<SpriteRenderer>().sprite = _sprite[0];
+                    _rayDir = -_rayDir;
+                }
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1) && !_wallHit)
-            {
-                if (_flipped)
-                    gameObject.transform.position += new Vector3(-2, 0, 0);
-                else
-                    gameObject.transform.position += new Vector3(2, 0, 0);
-                _stamina -= 10;
+                if (Input.GetKeyDown(KeyCode.Joystick1Button1) && !_wallHit)
+                {
+                    if (_flipped)
+                        gameObject.transform.position += new Vector3(-2, 0, 0);
+                    else
+                        gameObject.transform.position += new Vector3(2, 0, 0);
+                    _stamina -= 10;
+                }
             }
 
             

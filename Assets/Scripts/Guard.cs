@@ -23,6 +23,7 @@ public class Guard : MonoBehaviour
     [SerializeField]
     private Image _fail;
     public Move Player;
+    public FollowCam Active;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,7 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Active.Active)
         gameObject.transform.position += _move * _speed;
 
         _points[0] = gameObject.transform.position +_lineOrigin;
@@ -58,11 +60,14 @@ public class Guard : MonoBehaviour
         _hit = Physics2D.Raycast(_rayOrigin.position, _rayDirection, 5f, LayerMask.GetMask("Player"));
         _wallHit = Physics2D.Raycast(_rayOrigin.position, _rayDirection, 4f, LayerMask.GetMask("Wall"));
 
-        if (_hit && Player._hidden == false)
+        if (_hit && !Player._hidden && Active.Active)
         {
             _fail.gameObject.SetActive(true);
-            //Time.timeScale = 0;
+            Active.Active = false;
         }
+
+        if (!Active.Active)
+            _view.enabled = false;
 
         if (_wallHit)
             Flip();
