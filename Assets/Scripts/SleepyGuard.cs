@@ -23,6 +23,10 @@ public class SleepyGuard : MonoBehaviour
 
     public FollowCam Active;
 
+    private AudioSource _source;
+    public AudioClip _clip;
+    private bool _playable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +46,8 @@ public class SleepyGuard : MonoBehaviour
         _lineDirection = new Vector3(-LineLength, 0, 0);
         _spriteIndex = 1;
         _awake = true;
+        _source = GetComponent<AudioSource>();
+        _playable = true;
     }
 
     // Update is called once per frame
@@ -52,6 +58,11 @@ public class SleepyGuard : MonoBehaviour
         {
             Fail.gameObject.SetActive(true);
             Active.Active = false;
+            if (_playable)
+            {
+                _source.PlayOneShot(_clip, 1);
+                _playable = false;
+            }
         }
 
         if (Active.Active)

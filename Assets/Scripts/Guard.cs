@@ -25,6 +25,10 @@ public class Guard : MonoBehaviour
     public Move Player;
     public FollowCam Active;
 
+    private AudioSource _source;
+    public AudioClip _clip;
+    private bool _playable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,8 @@ public class Guard : MonoBehaviour
         _lineDirection = new Vector3(-LineLength, 0, 0);
         _lineOrigin = new Vector3(-1, 0, 0);
         _fail.gameObject.SetActive(false);
+        _source = GetComponent<AudioSource>();
+        _playable = true;
     }
 
     void Flip()
@@ -64,6 +70,11 @@ public class Guard : MonoBehaviour
         {
             _fail.gameObject.SetActive(true);
             Active.Active = false;
+            if (_playable)
+            {
+                _source.PlayOneShot(_clip, 1);
+                _playable = false;
+            }
         }
 
         if (!Active.Active)
