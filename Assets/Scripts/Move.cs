@@ -31,7 +31,7 @@ public class Move : MonoBehaviour
         _jumpPossible = true;
         _exhaustCloud = GetComponent<ParticleSystem>();
         _exhaustCloud.Stop();
-        _rayDir = gameObject.transform.right;
+        _rayDir = gameObject.transform.right * 2;
     }
 
     // Update is called once per frame
@@ -48,6 +48,7 @@ public class Move : MonoBehaviour
                         GetComponent<SpriteRenderer>().sprite = _sprite[1];
                     if (!_flipped)
                         GetComponent<SpriteRenderer>().sprite = _sprite[0];
+                    _rayDir = -_rayDir;
                 }
                 if (Input.GetKeyDown(KeyCode.Space) && !_wallHit)
                 {
@@ -117,7 +118,8 @@ public class Move : MonoBehaviour
             Vignette.enabled = false;
 
         //raycast wall
-        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 2, LayerMask.GetMask("Wall"));
+        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 4, LayerMask.GetMask("Wall"));
 
+            Debug.DrawRay(gameObject.transform.position, _rayDir, Color.green);
     }
 }
