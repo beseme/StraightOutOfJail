@@ -30,6 +30,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // movement
         if (_jumpPossible)
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -50,9 +51,10 @@ public class Move : MonoBehaviour
             }
         }
 
+        // stamina
         if (_stamina < 0)
             _jumpPossible = false;
-        if (_stamina > 20)
+        if (_stamina > 25)
             _jumpPossible = true;
 
         _bar.GetComponent<UIBar>().Bar(_stamina, 1, 100, 0, 1);
@@ -60,6 +62,8 @@ public class Move : MonoBehaviour
         if (_stamina <= 100)
             _stamina += Time.deltaTime * 10;
 
+
+        //hiding
         _rayBlack = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("Black"));
         _rayWhite = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("White"));
 
