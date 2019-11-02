@@ -49,6 +49,28 @@ public class Move : MonoBehaviour
                     gameObject.transform.position += new Vector3(2, 0, 0);
                 _stamina -= 10;
             }
+
+            /*
+             Joystick Action?! 
+            if (Input.GetKey(KeyCode.Joystick1Button0))
+            {
+                _flipped = !_flipped;
+                if (_flipped)
+                    GetComponent<SpriteRenderer>().sprite = _sprite[1];
+                if (!_flipped)
+                    GetComponent<SpriteRenderer>().sprite = _sprite[0];
+            }
+
+            if (Input.GetKey(KeyCode.Joystick1Button1))
+            {
+                if (_flipped)
+                    gameObject.transform.position += new Vector3(-2, 0, 0);
+                else
+                    gameObject.transform.position += new Vector3(2, 0, 0);
+                _stamina -= 10;
+            }
+
+            */
         }
 
         // stamina
