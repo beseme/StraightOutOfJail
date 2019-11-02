@@ -12,7 +12,8 @@ public class SleepyGuard : MonoBehaviour
     private Vector2 _rayDir;
     private bool _awake;
     public Image Fail;
-    private int _spriteIndex = 0;
+    private int _spriteIndex;
+    public Move Player;
 
     private LineRenderer _view;
     private Vector3 _lineOrigin;
@@ -23,7 +24,6 @@ public class SleepyGuard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _sprites = new Sprite[2];
         if (gameObject.transform.localScale == new Vector3(-1, 1, 1))
             _rayDir = gameObject.transform.right;
         else
@@ -31,15 +31,15 @@ public class SleepyGuard : MonoBehaviour
         _view = GetComponent<LineRenderer>();
         _points = new Vector3[2];
         _lineDirection = new Vector3(-LineLength, 0, 0);
+        _spriteIndex = 1;
+        _awake = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_sleepTimer);
-
         _ray = Physics2D.Raycast(gameObject.transform.position, _rayDir, 10, LayerMask.GetMask("Player"));
-        if(_ray && _awake)
+        if(_ray && _awake && !Player._hidden)
         {
             Fail.gameObject.SetActive(true);
         }
@@ -51,9 +51,8 @@ public class SleepyGuard : MonoBehaviour
             _awake = !_awake;
             _view.enabled = !_view.enabled;
             _spriteIndex += 1;
-            if (_spriteIndex > 1)
-                _spriteIndex = 0;
-            GetComponent<SpriteRenderer>().sprite = _sprites[_spriteIndex];
+
+            GetComponent<SpriteRenderer>().sprite = _sprites[_spriteIndex % 2];
         }
 
         _lineOrigin = gameObject.transform.position;

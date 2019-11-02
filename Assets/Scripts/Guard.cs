@@ -61,7 +61,7 @@ public class Guard : MonoBehaviour
         if (_hit && Player._hidden == false)
         {
             _fail.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
         if (_wallHit)
