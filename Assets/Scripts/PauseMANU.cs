@@ -7,6 +7,8 @@ public class PauseMANU : MonoBehaviour
     public static bool GameIsPause = false;
 
     public GameObject _pauseMenuUI;
+
+    public FollowCam Active;
    
 
     // Update is called once per frame
@@ -28,13 +30,13 @@ public class PauseMANU : MonoBehaviour
     public void Resume()
     {
         _pauseMenuUI.SetActive(false);
-        Time.timeScale = 1;
+        Active.Active = true;
         GameIsPause = false;
     }
     void Pause()
     {
         _pauseMenuUI.SetActive(true);
-        //Time.timeScale = 0;
+        Active.Active = false;
         GameIsPause = true;
     }
 
