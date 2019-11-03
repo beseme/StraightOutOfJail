@@ -55,8 +55,11 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Active.Active)
-        gameObject.transform.position += _move * _speed;
+        if (Active.Active)
+        {
+            gameObject.transform.position += _move * _speed;
+            _view.enabled = true;
+        }
 
         _points[0] = gameObject.transform.position +_lineOrigin;
         _points[1] = gameObject.transform.position + _lineDirection;
