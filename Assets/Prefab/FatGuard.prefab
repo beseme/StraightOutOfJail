@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 459178196393b4f57808557f99c12862, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   LineLength: 10
   Active: {fileID: 0}
+  GlobalVolume: {fileID: 0}
   _clip: {fileID: 8300000, guid: 2fe28608856da4496b053b198eef8af6, type: 3}
 --- !u!120 &3778137958093984505
 LineRenderer:
@@ -166,7 +167,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.96470594, g: 0.8431373, b: 0.18823531, a: 1}
-      key1: {r: 0.8588236, g: 0.98823535, b: 0.20784315, a: 1}
+      key1: {r: 1, g: 0, b: 0.045984745, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

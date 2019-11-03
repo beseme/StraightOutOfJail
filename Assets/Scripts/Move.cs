@@ -34,7 +34,6 @@ public class Move : MonoBehaviour
         _stamina = 100;
         _jumpPossible = true;
         _exhaustCloud = GetComponent<ParticleSystem>();
-        _exhaustCloud.Stop();
         _rayDir = gameObject.transform.right * 2;
         _source = GetComponent<AudioSource>();
     }
@@ -64,6 +63,11 @@ public class Move : MonoBehaviour
                         gameObject.transform.position += new Vector3(2, 0, 0);
                     _stamina -= 10;
                     _source.PlayOneShot(_moveSound, 1);
+                }
+
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    _exhaustCloud.Play();
                 }
 
 
@@ -104,11 +108,11 @@ public class Move : MonoBehaviour
         _bar.GetComponent<UIBar>().Bar(_stamina, 1, 100, 0, 1);
 
         if (_stamina <= 100)
-            _stamina += Time.deltaTime * 10;
+            _stamina += Time.deltaTime * 15;
 
-        if (!_jumpPossible)
+        if (_jumpPossible)
             _exhaustCloud.Stop();
-        else
+        else if(!_exhaustCloud.isPlaying)
             _exhaustCloud.Play();
 
 
