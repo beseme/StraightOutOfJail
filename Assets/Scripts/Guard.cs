@@ -85,10 +85,5 @@ public class Guard : MonoBehaviour
 
         if (_wallHit)
             Flip();
-
-        var line = gameObject.GetComponent<LineRenderer>();
-        var distance = Vector3.Distance(_points[0], _points[1]);
-        line.materials[0].mainTextureScale = new Vector3(distance, 1, 1);
-
-    }
+}
 }
