@@ -25,6 +25,7 @@ public class Guard : MonoBehaviour
     public Move Player;
     public FollowCam Active;
 
+    public AudioSource GlobalVolume;
     private AudioSource _source;
     public AudioClip _clip;
     private bool _playable;
@@ -71,6 +72,7 @@ public class Guard : MonoBehaviour
 
         if (_hit && !Player._hidden && Active.Active)
         {
+            GlobalVolume.volume = .1f;
             _fail.gameObject.SetActive(true);
             Active.Active = false;
             if (_playable)

@@ -9,12 +9,14 @@ public class PauseMANU : MonoBehaviour
     public GameObject _pauseMenuUI;
 
     public FollowCam Active;
+
+    public AudioSource GlobalVolume;
    
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button9))
         {
             if (GameIsPause)
             {
@@ -31,12 +33,14 @@ public class PauseMANU : MonoBehaviour
     {
         _pauseMenuUI.SetActive(false);
         Active.Active = true;
+        GlobalVolume.volume = 1f;
         GameIsPause = false;
     }
     void Pause()
     {
         _pauseMenuUI.SetActive(true);
         Active.Active = false;
+        GlobalVolume.volume = .1f;
         GameIsPause = true;
     }
 

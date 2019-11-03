@@ -24,6 +24,7 @@ public class SleepyGuard : MonoBehaviour
 
     public FollowCam Active;
 
+    public AudioSource GlobalVolume;
     private AudioSource _source;
     public AudioClip _clip;
     private bool _playable;
@@ -61,6 +62,7 @@ public class SleepyGuard : MonoBehaviour
         _ray = Physics2D.Raycast(gameObject.transform.position, _rayDir, 10, LayerMask.GetMask("Player"));
         if(_ray && _awake && !Player._hidden && Active.Active)
         {
+            GlobalVolume.volume = .1f;
             Fail.gameObject.SetActive(true);
             Active.Active = false;
             if (_playable)
