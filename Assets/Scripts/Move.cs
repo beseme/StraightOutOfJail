@@ -94,7 +94,7 @@ public class Move : MonoBehaviour
         }
 
         // stamina
-
+        
         if (_stamina < 0)
             _jumpPossible = false;
         if (_stamina > 25)
@@ -109,6 +109,8 @@ public class Move : MonoBehaviour
             _exhaustCloud.Stop();
         else
             _exhaustCloud.Play();
+        else
+            _exhaustCloud.Stop();
 
         //hiding
         _rayBlack = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("Black"));
