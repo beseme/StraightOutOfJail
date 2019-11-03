@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 21300000, guid: 868540030acb649c1a3f044eb6a8f982, type: 3}
   - {fileID: 21300000, guid: 459178196393b4f57808557f99c12862, type: 3}
+  - {fileID: 21300000, guid: 868540030acb649c1a3f044eb6a8f982, type: 3}
   Fail: {fileID: 0}
   Player: {fileID: 0}
   LineLength: 10
   Active: {fileID: 0}
-  _clip: {fileID: 0}
+  _clip: {fileID: 8300000, guid: 2fe28608856da4496b053b198eef8af6, type: 3}
 --- !u!120 &3778137958093984505
 LineRenderer:
   m_ObjectHideFlags: 0

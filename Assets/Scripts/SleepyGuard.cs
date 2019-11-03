@@ -7,6 +7,7 @@ public class SleepyGuard : MonoBehaviour
 {
     private float _sleepTimer = 1;
     private RaycastHit2D _ray;
+    private SpriteRenderer _render;
     [SerializeField]
     private Sprite[] _sprites;
     private Vector2 _rayDir;
@@ -32,22 +33,23 @@ public class SleepyGuard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.transform.localScale == new Vector3(-1, 1, 1))
+        _render = GetComponent<SpriteRenderer>();
+        if (_render.flipX)
         {
             _rayDir = gameObject.transform.right;
             _lineOrigin = new Vector3(1, 0, 0);
-
+            _lineDirection = new Vector3(LineLength, 0, 0);
         }
         else
         {
             _rayDir = -gameObject.transform.right;
             _lineOrigin = new Vector3(-1, 0, 0);
-        }
+            _lineDirection = new Vector3(-LineLength, 0, 0);
+            }
         _view = GetComponent<LineRenderer>();
         _points = new Vector3[2];
-        _lineDirection = new Vector3(-LineLength, 0, 0);
         _spriteIndex = 1;
-        _awake = true;
+        _awake = false;
         _source = GetComponent<AudioSource>();
         _playable = true;
         _ZZZ = GetComponent<ParticleSystem>();
