@@ -29,7 +29,7 @@ public class FollowCam : MonoBehaviour
         _zoomIn -= Time.deltaTime;
         if(_startSequence <= 0)
             _smoothen = .04f;
-        if(_zoomIn <= 0)
+        if(_zoomIn <= 0 && _zoomIn > -1)
             Active = true;
 
         Vector3 targetPosition = _player.position + new Vector3(0, 1.5f, -15) + _offset;
