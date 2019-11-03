@@ -20,6 +20,10 @@ public class Move : MonoBehaviour
     public PostProcessVolume Vignette;
     private ParticleSystem _exhaustCloud;
     public FollowCam Active;
+
+    public AudioClip _moveSound;
+    public AudioClip _turnSound;
+    private AudioSource _source;
     
 
 
@@ -32,6 +36,7 @@ public class Move : MonoBehaviour
         _exhaustCloud = GetComponent<ParticleSystem>();
         _exhaustCloud.Stop();
         _rayDir = gameObject.transform.right * 2;
+        _source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +54,7 @@ public class Move : MonoBehaviour
                     if (!_flipped)
                         GetComponent<SpriteRenderer>().sprite = _sprite[0];
                     _rayDir = -_rayDir;
+                    _source.PlayOneShot(_turnSound, 1);
                 }
                 if (Input.GetKeyDown(KeyCode.Space) && !_wallHit)
                 {
@@ -57,12 +63,14 @@ public class Move : MonoBehaviour
                     else
                         gameObject.transform.position += new Vector3(2, 0, 0);
                     _stamina -= 10;
+                    _source.PlayOneShot(_moveSound, 1);
                 }
 
 
                 //Joystick Action?! 
                 if (Input.GetKeyDown(KeyCode.Joystick1Button0))
                 {
+                    _source.PlayOneShot(_turnSound, 1);
                     _flipped = !_flipped;
                     if (_flipped)
                         GetComponent<SpriteRenderer>().sprite = _sprite[1];
@@ -73,6 +81,7 @@ public class Move : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Joystick1Button1) && !_wallHit)
                 {
+                    _source.PlayOneShot(_moveSound, 1);
                     if (_flipped)
                         gameObject.transform.position += new Vector3(-2, 0, 0);
                     else
@@ -85,7 +94,7 @@ public class Move : MonoBehaviour
         }
 
         // stamina
-        /*
+
         if (_stamina < 0)
             _jumpPossible = false;
         if (_stamina > 25)
@@ -97,10 +106,10 @@ public class Move : MonoBehaviour
             _stamina += Time.deltaTime * 10;
 
         if (!_jumpPossible)
-            _exhaustCloud.Play();
-        else
             _exhaustCloud.Stop();
-*/
+        else
+            _exhaustCloud.Play();
+
         //hiding
         _rayBlack = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("Black"));
         _rayWhite = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.forward, 10f, LayerMask.GetMask("White"));
@@ -118,7 +127,7 @@ public class Move : MonoBehaviour
             Vignette.enabled = false;
 
         //raycast wall
-        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 4, LayerMask.GetMask("Wall"));
+        _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 2, LayerMask.GetMask("Wall"));
 
             Debug.DrawRay(gameObject.transform.position, _rayDir, Color.green);
     }

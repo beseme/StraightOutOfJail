@@ -27,6 +27,8 @@ public class SleepyGuard : MonoBehaviour
     public AudioClip _clip;
     private bool _playable;
 
+    private ParticleSystem _ZZZ;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,7 @@ public class SleepyGuard : MonoBehaviour
         _awake = true;
         _source = GetComponent<AudioSource>();
         _playable = true;
+        _ZZZ = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -74,6 +77,10 @@ public class SleepyGuard : MonoBehaviour
                 _awake = !_awake;
                 _view.enabled = !_view.enabled;
                 _spriteIndex += 1;
+                if (_awake)
+                    _ZZZ.Stop();
+                else
+                    _ZZZ.Play();
 
                 GetComponent<SpriteRenderer>().sprite = _sprites[_spriteIndex % 2];
             }
@@ -81,6 +88,7 @@ public class SleepyGuard : MonoBehaviour
         else
         {
             _view.enabled = false;
+            _ZZZ.Stop();
         }
 
         _points[0] = gameObject.transform.position + _lineOrigin;
