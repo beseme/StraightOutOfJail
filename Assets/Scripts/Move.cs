@@ -68,7 +68,7 @@ public class Move : MonoBehaviour
 
 
                 //Joystick Action?! 
-                if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+                if (Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button4))
                 {
                     _source.PlayOneShot(_turnSound, 1);
                     _flipped = !_flipped;
@@ -79,7 +79,8 @@ public class Move : MonoBehaviour
                     _rayDir = -_rayDir;
                 }
 
-                if (Input.GetKeyDown(KeyCode.Joystick1Button1) && !_wallHit)
+
+                if ((Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button5)) && !_wallHit)
                 {
                     _source.PlayOneShot(_moveSound, 1);
                     if (_flipped)
