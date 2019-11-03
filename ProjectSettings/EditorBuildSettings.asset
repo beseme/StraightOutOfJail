@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bennet Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_02.unity
     guid: 391189516f3ef6e40a1e6ade2ead5d4b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lukas Scene.unity
     guid: 7eca1eafaae5a4139a9dcba793e5a332
   m_configObjects: {}
