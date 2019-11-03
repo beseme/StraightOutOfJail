@@ -2791,11 +2791,6 @@ PrefabInstance:
       propertyPath: Vignette
       value: 
       objectReference: {fileID: 21333934}
-    - target: {fileID: -1210149642756858938, guid: 79f1561ac0b374a10b5c2f764d333dbb,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6096850373247225740, guid: 79f1561ac0b374a10b5c2f764d333dbb,
         type: 3}
       propertyPath: _clip
@@ -11279,11 +11274,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3778137958093984507, guid: 5c5c9a91ba2f84c679f1a2eb100dd895,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3778137958093984506, guid: 5c5c9a91ba2f84c679f1a2eb100dd895,
         type: 3}
       propertyPath: Fail
@@ -12188,6 +12178,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 8194563846397697191, guid: 31ac43829678a4f79aae91b53b699453,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1032672580}
     - target: {fileID: 8194563846397697113, guid: 31ac43829678a4f79aae91b53b699453,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12263,11 +12258,6 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.b
       value: 0.16420433
       objectReference: {fileID: 0}
-    - target: {fileID: 8194563846397697191, guid: 31ac43829678a4f79aae91b53b699453,
-        type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 1032672580}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ac43829678a4f79aae91b53b699453, type: 3}
 --- !u!1 &1636758305
@@ -13405,11 +13395,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3778137958093984507, guid: 5c5c9a91ba2f84c679f1a2eb100dd895,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3778137958093984506, guid: 5c5c9a91ba2f84c679f1a2eb100dd895,
         type: 3}
