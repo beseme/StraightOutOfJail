@@ -5,30 +5,34 @@ using UnityEngine.UI;
 
 public class Guard : MonoBehaviour
 {
+    //move
     [SerializeField]
     private float _speed;
     private Vector3 _move = new Vector3(-.1f,0,0);
-    private RaycastHit2D _hit;
     private RaycastHit2D _wallHit;
+
+    //hitdetection
+    private RaycastHit2D _hit;
     private Transform _rayOrigin;
     private Vector2 _rayDirection;
+    public Move Player;
+
+    //visual
     private Vector3 _lineOrigin;
     private Vector3 _lineDirection;
     public float LineLength;
     private Vector3[] _points;
-    [SerializeField]
-    private Sprite[] _spriteFlip = new Sprite[2];
-    private int _spriteIndex = 0;
     private LineRenderer _view;
-    [SerializeField]
-    private Image _fail;
-    public Move Player;
+   
     public FollowCam Active;
 
+    //audio
     public AudioSource GlobalVolume;
     private AudioSource _source;
     public AudioClip _clip;
     private bool _playable;
+
+    public GUI Overlay;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +43,6 @@ public class Guard : MonoBehaviour
         _points = new Vector3[2];
         _lineDirection = new Vector3(-LineLength, 0, 0);
         _lineOrigin = new Vector3(-1, 0, 0);
-        _fail.gameObject.SetActive(false);
         _source = GetComponent<AudioSource>();
         _playable = true;
     }
@@ -56,12 +59,6 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Active.Active)
-        {
-            gameObject.transform.position += _move * _speed;
-            _view.enabled = true;
-        }
-
         _points[0] = gameObject.transform.position +_lineOrigin;
         _points[1] = gameObject.transform.position + _lineDirection;
 
@@ -72,9 +69,7 @@ public class Guard : MonoBehaviour
 
         if (_hit && !Player._hidden && Active.Active)
         {
-            GlobalVolume.volume = .1f;
-            _fail.gameObject.SetActive(true);
-            Active.Active = false;
+            Overlay.Fail();
             if (_playable)
             {
                 _source.PlayOneShot(_clip, 1);
@@ -88,4 +83,12 @@ public class Guard : MonoBehaviour
         if (_wallHit)
             Flip();
 }
+    private void FixedUpdate()
+    {
+        if (Active.Active)
+        {
+            gameObject.transform.position += _move * _speed;
+            _view.enabled = true;
+        }
+    }
 }

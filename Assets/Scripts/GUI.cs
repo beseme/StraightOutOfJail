@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class PauseMANU : MonoBehaviour
-{
-    public static bool GameIsPause = false;
 
-    public GameObject _pauseMenuUI;
+public class GUI : MonoBehaviour
+{
+    public bool GameIsPause;
+
+    public Image _pauseMenuUI;
+    public Image FailScreen;
+    public Image WinScreen;
 
     public FollowCam Active;
 
@@ -15,7 +19,24 @@ public class PauseMANU : MonoBehaviour
 
     private void Start()
     {
-        _pauseMenuUI.SetActive(false);
+        _pauseMenuUI.gameObject.SetActive(false);
+        FailScreen.gameObject.SetActive(false);
+        WinScreen.gameObject.SetActive(false);
+        GameIsPause = false;
+    }
+
+    public void Fail()
+    {
+        FailScreen.gameObject.SetActive(true);
+        Active.Active = false;
+        GlobalVolume.volume = .1f;
+    }
+
+    public void Win()
+    {
+        WinScreen.gameObject.SetActive(true);
+        Active.Active = false;
+        GlobalVolume.volume = .1f;
     }
 
     // Update is called once per frame
@@ -36,14 +57,14 @@ public class PauseMANU : MonoBehaviour
 
     public void Resume()
     {
-        _pauseMenuUI.SetActive(false);
+        _pauseMenuUI.gameObject.SetActive(false);
         Active.Active = true;
         GlobalVolume.volume = 1f;
         GameIsPause = false;
     }
     void Pause()
     {
-        _pauseMenuUI.SetActive(true);
+        _pauseMenuUI.gameObject.SetActive(true);
         Active.Active = false;
         GlobalVolume.volume = .1f;
         GameIsPause = true;

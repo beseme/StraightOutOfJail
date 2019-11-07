@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
+    //follow
     public Transform _player;
+
+    //smoothen
     private float _smoothen;
     private Vector3 _offset;
+
     public bool Active;
+
+    //on start
     public AudioClip _startSound;
     private float _startSequence;
     private float _zoomIn = 3;
