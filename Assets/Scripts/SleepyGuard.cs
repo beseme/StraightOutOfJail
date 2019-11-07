@@ -5,31 +5,36 @@ using UnityEngine.UI;
 
 public class SleepyGuard : MonoBehaviour
 {
+    //sleep
     private float _sleepTimer = 1;
+    private bool _awake;
+
+    //hitdetection
     private RaycastHit2D _ray;
     private SpriteRenderer _render;
-    [SerializeField]
-    private Sprite[] _sprites;
     private Vector2 _rayDir;
-    private bool _awake;
-    public Image Fail;
-    private int _spriteIndex;
     public Move Player;
 
+    //visual
+    [SerializeField]
+    private Sprite[] _sprites;
+    private int _spriteIndex;
     private LineRenderer _view;
     private Vector3 _lineOrigin;
     private Vector3 _lineDirection;
     public float LineLength;
     private Vector3[] _points;
+    private ParticleSystem _ZZZ;
 
     public FollowCam Active;
 
+    //audio
     public AudioSource GlobalVolume;
     private AudioSource _source;
     public AudioClip _clip;
     private bool _playable;
 
-    private ParticleSystem _ZZZ;
+    public GUI Overlay;
 
     // Start is called before the first frame update
     void Start()
@@ -62,9 +67,7 @@ public class SleepyGuard : MonoBehaviour
         _ray = Physics2D.Raycast(gameObject.transform.position, _rayDir, 10, LayerMask.GetMask("Player"));
         if(_ray && _awake && !Player._hidden && Active.Active)
         {
-            GlobalVolume.volume = .1f;
-            Fail.gameObject.SetActive(true);
-            Active.Active = false;
+            Overlay.Fail();
             if (_playable)
             {
                 _source.PlayOneShot(_clip, 1);

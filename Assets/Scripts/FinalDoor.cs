@@ -11,6 +11,7 @@ public class FinalDoor : MonoBehaviour
     public AudioClip Clip;
     private bool _played;
     private RaycastHit2D _hit;
+    public GUI Overlay;
 
     private void Start()
     {
@@ -25,8 +26,8 @@ public class FinalDoor : MonoBehaviour
         _source.PlayOneShot(Clip, 1);
         _played = true;
         yield return new WaitForSeconds(.1f);
-        Win.gameObject.SetActive(true);
-    }
+        Overlay.Win();
+        }
 
     private void Update()
     {
@@ -35,7 +36,6 @@ public class FinalDoor : MonoBehaviour
         {
             if (_hit)
             {
-                Active.Active = false;
                 StartCoroutine(Finish());
             }
         }

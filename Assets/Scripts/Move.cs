@@ -5,26 +5,33 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class Move : MonoBehaviour
 {
+    //visual
     [SerializeField]
     private Sprite[] _sprite = new Sprite[2];
     private int _spriteIndex = 0;
     private bool _flipped;
-    private bool _jumpPossible;
-    public bool _hidden;
-    private float _stamina;
-    public UIBar _bar;
-    private RaycastHit2D _rayBlack;
-    private RaycastHit2D _rayWhite;
-    private RaycastHit2D _wallHit;
-    private Vector2 _rayDir;
     public PostProcessVolume Vignette;
     private ParticleSystem _exhaustCloud;
+    public UIBar _bar;
+    
+    //movement
+    private bool _jumpPossible;
+    private float _stamina;
+    private RaycastHit2D _wallHit;
+    private Vector2 _rayDir;
+
     public FollowCam Active;
 
+    //hiding
+    public bool _hidden;
+    private RaycastHit2D _rayBlack;
+    private RaycastHit2D _rayWhite;
+
+
+    //sound
     public AudioClip _moveSound;
     public AudioClip _turnSound;
     private AudioSource _source;
-    
 
 
     // Start is called before the first frame update
@@ -98,8 +105,8 @@ public class Move : MonoBehaviour
             
         }
 
-        // stamina
         
+        // stamina
         if (_stamina < 0)
             _jumpPossible = false;
         if (_stamina > 25)
@@ -136,5 +143,10 @@ public class Move : MonoBehaviour
         _wallHit = Physics2D.Raycast(gameObject.transform.position, _rayDir, 2, LayerMask.GetMask("Wall"));
 
             Debug.DrawRay(gameObject.transform.position, _rayDir, Color.green);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
     }
 }
