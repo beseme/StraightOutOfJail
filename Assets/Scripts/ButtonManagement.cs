@@ -21,4 +21,9 @@ public class ButtonManagement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void PlayHard()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

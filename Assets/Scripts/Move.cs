@@ -45,6 +45,11 @@ public class Move : MonoBehaviour
         _source = GetComponent<AudioSource>();
     }
 
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -145,8 +150,4 @@ public class Move : MonoBehaviour
             Debug.DrawRay(gameObject.transform.position, _rayDir, Color.green);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        collision.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
-    }
 }

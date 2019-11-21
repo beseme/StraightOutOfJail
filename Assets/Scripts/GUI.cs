@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GUI : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class GUI : MonoBehaviour
 
     public AudioSource GlobalVolume;
 
+    public EventSystem UiSystem;
+    public GameObject FirstPaused;
+    public GameObject FirstCought;
+    public GameObject FirstWin;
 
     private void Start()
     {
@@ -29,6 +34,8 @@ public class GUI : MonoBehaviour
     {
         FailScreen.gameObject.SetActive(true);
         Active.Active = false;
+        UiSystem.firstSelectedGameObject = FirstCought;
+        UiSystem.SetSelectedGameObject(FirstCought);
         GlobalVolume.volume = .1f;
     }
 
@@ -36,6 +43,7 @@ public class GUI : MonoBehaviour
     {
         WinScreen.gameObject.SetActive(true);
         Active.Active = false;
+        UiSystem.firstSelectedGameObject = FirstWin;
         GlobalVolume.volume = .1f;
     }
 
@@ -66,6 +74,8 @@ public class GUI : MonoBehaviour
     {
         _pauseMenuUI.gameObject.SetActive(true);
         Active.Active = false;
+        UiSystem.firstSelectedGameObject = FirstPaused;
+        UiSystem.SetSelectedGameObject(FirstPaused);
         GlobalVolume.volume = .1f;
         GameIsPause = true;
     }

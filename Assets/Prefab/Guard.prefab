@@ -96,15 +96,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  LineLength: 6
-  _spriteFlip:
-  - {fileID: 21300000, guid: cf60f85673f4f4a5c94486f894408b96, type: 3}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  _fail: {fileID: 0}
   Player: {fileID: 0}
+  LineLength: 6
   Active: {fileID: 0}
   GlobalVolume: {fileID: 0}
   _clip: {fileID: 8300000, guid: 2fe28608856da4496b053b198eef8af6, type: 3}
+  Overlay: {fileID: 0}
 --- !u!120 &6832228640875078988
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -166,7 +163,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.8717628, b: 0, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 0}
       key1: {r: 1, g: 0, b: 0.11826277, a: 1}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

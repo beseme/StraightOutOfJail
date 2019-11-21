@@ -5,10 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MainManu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private AudioSource _buttonSource;
+    [SerializeField]
+    private AudioClip _onClickClip;
+
+    private void Start()
+    {
+        _buttonSource = GetComponent<AudioSource>();
+    }
+
+    private IEnumerator Click()
+    {
+        _buttonSource.PlayOneShot(_onClickClip, 3);
+        yield return new WaitForSeconds(_onClickClip.length);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(Click());
     }
     public void QuitGame()
     {
